@@ -17,3 +17,4 @@ class Bag(models.Model):
 
 
 
+
