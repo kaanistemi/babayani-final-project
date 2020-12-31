@@ -17,3 +17,4 @@ class Migration(migrations.Migration):
             field=django_countries.fields.CountryField(max_length=2),
         ),
     ]
+    
