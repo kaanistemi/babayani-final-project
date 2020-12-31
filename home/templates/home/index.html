@@ -1,0 +1,183 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_header %}
+<div class="container header-container">
+    <div class="row">
+        <div class="col"></div>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+
+<div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+        <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
+        <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
+        <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
+    </ol>
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <picture>
+                <source media="(max-width: 659px)" class="mini-logo" srcset="{% static 'media/karesehpakucuk.png' %}">
+                <source media="(min-width: 660px)" srcset="{% static 'media/3_2000x1000.png' %}">
+                <img src="{% static 'media/3_2000x1000.png' %}" class="img-fluid d-block w-100" alt="...">
+            </picture>
+            <div class="carousel-caption d-md-block">
+                <h2 class="top-title">Best quality homewares </h2>
+                <h5 class="below-title">Design your home best</h5>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <picture>
+                <source media="(max-width: 659px)" class="mini-logo" srcset="{% static 'media/karekravatkucuk.png' %}">
+                <source media="(min-width: 660px)" srcset="{% static 'media/1_2000x1000.png' %}">
+                <img src="{% static 'media/1_2000x1000.png' %}" class="img-fluid d-block w-100" alt="...">
+            </picture>
+            <div class="carousel-caption d-md-block">
+                <h2 class="top-title">All kind of gifts</h2>
+                <h5 class="below-title">Special products for special days</h5>
+            </div>
+        </div>
+        <div class="carousel-item ">
+            <picture>
+                <source media="(max-width: 659px)" class="mini-logo" srcset="{% static 'media/karelambakucuk.png' %}">
+                <source media="(min-width: 660px)" srcset="{% static 'media/2_2000x1000.png' %}">
+                <img src="{% static 'media/2_2000x1000.png' %}" class="img-fluid d-block w-100 " alt="...">
+            </picture>
+            <div class="carousel-caption d-md-block">
+                <h2 class="top-title">Don't miss special offers</h2>
+                <h5 class="below-title">Coupons and best deals for you</h5>
+            </div>
+        </div>
+    </div>
+    <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
+</div>
+
+<div id="delivery-banner" class="text-center">
+    <div class="col bg-black text-white">
+        <h3 class="logo-font">FREE DELIVERY ON ORDERS OVER ${{ free_delivery_threshold }}!</h3>
+
+    </div>
+</div>
+
+
+<h2 class="text-wood mt-5">
+    <center><strong>New Arrivals</strong></center>
+</h2>
+<hr class="w-50 mt-3">
+
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+
+                        <div class="row mr-3 ml-3">
+                {% for product in products %}
+                <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
+                    <div class="card w-100 h-100 border-0">
+                        {% if product.image %}
+                        <a href="{% url 'product_detail' product.id %}">
+                            <img class="card-img-top img-fluid" src="{{ product.image.url }}" alt="{{ product.name }}">
+                        </a>
+                        {% else %}
+                        <a href="{% url 'product_detail' product.id %}">
+                            <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.png"
+                                alt="{{ product.name }}">
+                        </a>
+                        {% endif %}
+                        <div class="card-body pb-0">
+                            <p class="mb-0 text-black"><strong>{{ product.name }}</strong></p>
+                        </div>
+                        <div class="card-body pb-0">
+                                    <p class="mb-0 mt-0 lead-2"><strong>{{ product.delivery_time }}</strong></p>
+                        </div> 
+
+                        <div class="card-footer bg-white pt-0 border-0 text-left">
+                            <div class="row">
+                                <div class="col">
+                                    <p class="text-bottom lead mb-0 text-left font-weight-bold ">${{ product.price }}</p>
+                                    {% if product.category %}
+                                    <p class="small mt-1 mb-0">
+                                        <a class="text-muted"
+                                            href="{% url 'products' %}?category={{ product.category.name }}">
+                                            <i class="fas fa-tag mr-1"></i>{{ product.category.friendly_name }}
+                                        </a>
+                                    </p>
+                                    {% endif %}
+                                    {% if product.rating %}
+                                    <small class="text-muted"><i
+                                            class="fas fa-star text-warning mr-1"></i>{{ product.rating }} / 5</small>
+                                    {% else %}
+                                    <small class="text-muted">No Rating</small>
+                                    {% endif %}
+                                    <br><small class="text-muted"><i
+                                            class="fas fa-comment mr-1"></i>Comments: {{product.total_comments}}</small><br>
+                                    {% if request.user.is_superuser %}
+                                    <small class="ml-3">
+                                        <a href="{% url 'edit_product' product.id %}">Edit</a> |
+                                        <a class="text-danger" href="{% url 'delete_product' product.id %}">Delete</a>
+                                    </small>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                {% if forloop.counter|divisibleby:1 %}
+                <div class="col-12 d-sm-none mb-5">
+                    <hr>
+                </div>
+                {% endif %}
+                {% if forloop.counter|divisibleby:2 %}
+                <div class="col-12 d-none d-sm-block d-md-block d-lg-none mb-5">
+                    <hr>
+                </div>
+                {% endif %}
+                {% if forloop.counter|divisibleby:3 %}
+                <div class="col-12 d-none d-lg-block d-xl-none mb-5">
+                    <hr>
+                </div>
+                {% endif %}
+                {% if forloop.counter|divisibleby:4 %}
+                <div class="col-12 d-none d-xl-block mb-5">
+                    <hr>
+                </div>
+                {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+        <div class="btt-button shadow-sm rounded-0 border border-wood">
+            <a class="btt-link d-flex h-100">
+                <i class="fas fa-arrow-up mx-auto my-auto"></i>
+            </a>	
+
+        </div>
+</div>
+</div>
+
+{% block postloadjs %}
+    {{ block.super }}
+    <script type="text/javascript">
+		$('.btt-link').click(function(e) {
+			window.scrollTo(0,0)
+		})
+	</script>
+    
+{% endblock %}
+
+
+{% endblock %}
