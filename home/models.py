@@ -28,4 +28,3 @@ class PageText(models.Model):
 
 
 
-
