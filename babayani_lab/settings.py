@@ -215,4 +215,3 @@ STATICFILES_STORAGE = 'babayani_lab.utils.storage.StaticStorage'
 DEFAULT_FILE_STORAGE = 'babayani_lab.utils.storage.MediaStorage'
 STATIC_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, 'static')
 MEDIA_URL = 'https://{}/media/'.format(AWS_S3_CUSTOM_DOMAIN)
-
