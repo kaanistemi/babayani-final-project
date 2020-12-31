@@ -7,3 +7,6 @@ urlpatterns = [
     path('adjust/<item_id>/', views.adjust_to_bag, name='adjust_to_bag'),
     path('remove/<item_id>/', views.remove_to_bag, name='remove_to_bag'),
 ]
+
+
+
