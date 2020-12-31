@@ -120,3 +120,5 @@ class Used_coupon(models.Model):
 
     def __str__(self):
         return self.user.username + " used " + self.coupon.name
+
+        
