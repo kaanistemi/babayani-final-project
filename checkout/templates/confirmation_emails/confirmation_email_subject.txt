@@ -1,1 +1,1 @@
-babayani.lab Confirmation for Order Number {{ order.order_number }}
+babayani.lab Confirmation for Order Number {{ order.order_number }} 
