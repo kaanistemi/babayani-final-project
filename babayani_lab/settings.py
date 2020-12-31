@@ -195,7 +195,6 @@ STRIPE_PUBLIC_KEY = os.getenv('STRIPE_PUBLIC_KEY', 'pk_test_51HAYEAED0ECpcqyZuY9
 
 STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY', 'sk_test_51HAYEAED0ECpcqyZ0tSFntsqxTL07aOZSiQVaTNVzlaH1IJdaYGCZNE6bBRAhWaba9N7CkGW3k4IAd12zDv5wCBF00XNDpFDWE')
 STRIPE_WH_SECRET = os.getenv('STRIPE_WH_SECRET', 'whsec_YClpgtbU4xhSmCji6jc8op47tCgfaOCB')
-DEFAULT_FROM_EMAIL = 'kaanistemi1@gmail.com'
 
 if 'DEVELOPMENT' in os.environ:
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
