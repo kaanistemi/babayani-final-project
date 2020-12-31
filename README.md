@@ -171,11 +171,13 @@ to allow admin editing product.
 - Customer service chat.
 
 <h2>Technologies Used</h2>
+
 [HTML](https://html.com/) and [CSS](https://html.com/)
 - For webite's front-end
 
+
 [JavaScript](https://www.javascript.com/)
-- To use a hamburger menu
+- To use a hamburger menu, button activations(edit/delete, inc/dec quantity,), stripe(payment loading page)
 
 [Bootstrap](https://getbootstrap.com//)
 - Design and customize responsive mobile-first
